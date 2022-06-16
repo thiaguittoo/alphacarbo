@@ -1,0 +1,7 @@
+{
+  "name": "alphacarbo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

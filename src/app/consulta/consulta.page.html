@@ -1,0 +1,55 @@
+<div class="home">
+  <div class="back_icon"  routerLink="/">
+      <img src="./../../assets/icon/arrow-left-solid.svg" width="20px">
+  </div>
+  <ion-content [fullscreen]="true">
+    
+    <div class="content">
+      <div>
+        <div class="logo">
+          <img src="./../../assets/logo.png">
+        </div>
+        <div class="form_consulta">
+          <div class="componentes">
+            <form (ngSubmit)="consultar()" [formGroup]="ordem_consulta" class="f_consulta">
+            <div *ngIf="ordem == null">
+              <input placeholder="Código da ordem" formControlName="codigo" type="text" class="input-s1">
+            </div>
+            <button type="submit" *ngIf="ordem == null" class="btn-s2">CONSULTAR</button>
+            </form>
+            <div class="resultado_consulta" *ngIf="ordem != null">
+              <div class="titulo">ORDEM OBTIDA</div>
+              <div class="resultado">
+                <div class="codigo"><span>COD:</span> {{ordem.codigo}}</div>
+                <div class="cliente"><span>Cliente:</span> {{ordem.cliente}}</div>
+                <div class="produto"><span>Produto:</span> {{ordem.produto}}</div>
+                <div class="quantidade"><span>Quantidade:</span> {{ordem.quantidade}}</div>
+                <div class="embalagem"><span>Embalagem:</span> {{ordem.embalagem}}</div>
+                <div class="situacao"><span>Situação:&nbsp;</span> 
+                  <div *ngIf="ordem.status == 'aguardando'"> Aguardando</div>
+                  <div *ngIf="ordem.status == 'producao'"> Em produção</div>
+                  <div *ngIf="ordem.status == 'pronto'"> Pronto para embarque</div>
+                  <div *ngIf="ordem.status == 'carregado'"> Carregado</div>
+                  <div *ngIf="ordem.status == 'entregue'"> Produto entregue</div>
+
+                </div>
+                <div *ngIf="transportadora != null" class="transportadora"><span>Transportadora:</span>
+
+                  <div >{{transportadora.nome}}</div>
+                </div>
+              
+
+
+                <div class="atualizado"><span>Atualizado:</span> {{ordem.atualizado_em.toDate() | date: 'dd/MM - HH:mm'}}h</div>
+              </div>
+              <div>
+                <button class="btn-s2" routerLink="/">VOLTAR</button>
+              </div>
+            </div>
+            <div class="copyright">© AlphaCarbo</div>
+          </div>
+        </div>
+      </div>
+   </div>
+  </ion-content>
+</div>

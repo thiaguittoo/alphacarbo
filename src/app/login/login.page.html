@@ -1,0 +1,26 @@
+<div class="home">
+  <div class="back_icon"  routerLink="/">
+      <img src="./../../assets/icon/arrow-left-solid.svg" width="20px">
+  </div>
+  <ion-content [fullscreen]="true">
+    
+    <div class="content">
+      <div>
+        <div class="logo">
+          <img src="./../../assets/logo.png">
+        </div>
+        
+  <form (ngSubmit)="login()" [formGroup]="credentials" class="form_consulta">
+          <div class="componentes">
+            <div>
+              <input placeholder="Usuário" type="text" formControlName="email" class="input-s1">
+               <input placeholder="Senha" type="password" formControlName="password" class="input-s1">
+            </div>
+            <button class="btn-s2"  [disabled]="!credentials.valid" >ENTRAR</button>
+            <div class="copyright">© AlphaCarbo</div>
+          </div>
+        </form>
+      </div>
+   </div>
+  </ion-content>
+</div>

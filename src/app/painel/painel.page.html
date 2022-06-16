@@ -1,0 +1,60 @@
+<div class="home">
+  <ion-content [fullscreen]="true">
+    
+    <div class="content">
+      <div>
+        <div class="logo">
+          <img src="./../../assets/logo.png">
+        </div>
+        <div class="conteudo">
+          <div class="menu">
+            <button class="btn-s2 novo" routerLink="/usuarios">USUÁRIOS</button>
+            <button class="btn-s2 novo" style="background-color:#42515A !important;" routerLink="/ordem">CRIAR ORDEM</button>
+            <button class="btn-s2 sair" (click)="sair()">SAIR</button>
+          </div>
+          <div class="cabecalho">
+            <div class="titulo">Ordens de embarque</div>
+            <div class="filtragem">
+              <div>Filtrar:</div>
+              <div>
+              <select (change)="filtrarOrdens($event);"  class="input-s1 filtrarOrdens">
+                <option value="todos">Todos</option>
+                <option value="aguardando">Aguardando</option>
+                <option value="producao">Em produção</option>
+                <option value="pronto">Pronto para embarque</option>
+                <option value="carregado">Carregado</option>
+                <option value="entregue">Entregue</option>
+              </select>
+              </div>
+          </div>
+          </div>
+          <div class="ordens_lista">
+              <div class="ordens_cabecalho">
+                <div>Cliente</div>
+                <div>Status</div>
+              </div>
+              <div class="ordens_conteudo">
+               
+                <div class="ordem" *ngFor="let ordem of ordensfiltro">
+                  <div class="nome">{{ordem.cliente}}</div>
+                  <div class="status">
+                    <div *ngIf="ordem.status == 'aguardando'">Aguardando</div>
+                    <div *ngIf="ordem.status == 'producao'">Em produção</div>
+                    <div *ngIf="ordem.status == 'pronto'">Pronto para embarque</div>
+                    <div *ngIf="ordem.status == 'carregado'">Carregado</div>
+                    <div *ngIf="ordem.status == 'entregue'">Entregue</div>
+                    <div class="edit"  (click)="EditarOrdem(ordem.id)">
+                      <div style="margin-right:5px;"><img src="./../../assets/icon/edit-solid.svg"  width="23px"></div>
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+          </div>
+        </div>
+     
+        
+      </div>
+   </div>
+  </ion-content>
+</div>

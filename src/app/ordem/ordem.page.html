@@ -1,0 +1,71 @@
+<div class="home">
+  <div class="back_icon"  routerLink="/painel">
+      <img src="./../../assets/icon/arrow-left-solid.svg" width="20px">
+  </div>
+  <ion-content [fullscreen]="true">
+    
+    <div class="content">
+      <div>
+        <div class="logo">
+          <img src="./../../assets/logo.png">
+        </div>
+        
+      <form  (ngSubmit)="salvar()" [formGroup]="ordem_in" class="form_consulta">
+          <div class="componentes">
+            <div class="titulo">{{titulo}}</div>
+            <div class="codigo" *ngIf="ordem_id != null"><small>COD:</small> {{ordem.codigo}}</div>
+            <div class="group">
+              <label>NOME DO CLIENTE</label>
+              <input required placeholder="Insira o nome de seu cliente" formControlName="cliente" value="{{ordem.cliente}}" type="text" class="input-s1">
+            </div>
+            <div class="group">
+              <label>PRODUTO</label>
+              <select required placeholder="Escolha o produto..." formControlName="produto" class="input-s1">
+                <option value="" disabled selected>Escolha o produto...</option>
+                <option *ngFor="let produto of produtos" [selected]="ordem.produto == produto.nome">{{produto.nome}}</option>
+              </select>
+            </div>
+            <div class="group">
+              <label>QUANTIDADE <small>(kg)</small></label>
+              <input required placeholder="Ex: 100kg" type="text" formControlName="quantidade" value="{{ordem.quantidade}}" class="input-s1">
+            </div>
+            <div class="group">
+              <label>EMBALAGEM</label>
+              <div></div>
+              <select required placeholder="Escolha a embalagem do produto..." formControlName="embalagem" class="input-s1">
+                <option value="" disabled selected>Escolha a embalagem do produto...</option>
+                <option *ngFor="let embalagem of embalagens;index as i" [selected]="ordem.embalagem == embalagem">{{embalagem}}</option>
+            </select>
+            </div>
+            <div class="group">
+              <label>TRANSPORTADORA</label>
+              <select required placeholder="Escolha a transportadora..." formControlName="transportadora" class="input-s1">
+                <option value="" disabled  [selected]="ordem.transportadora != undefined ? false : true">Escolha a transportadora...</option>
+                <option *ngFor="let transportadora of transportadoras;index as i" [selected]="ordem.transportadora == transportadora.id" [attr.value]="transportadora.id" >{{transportadora.nome}}</option>
+              </select>
+            </div>
+            
+            <div class="group">
+              <label>SITUAÇÃO</label>
+              <select required formControlName="status" type="text" class="input-s1">
+                <option value="" disabled selected>Situação do produto</option>
+                <option value="aguardando" [selected]="ordem.status == 'aguardando'">Aguardando</option>
+                <option value="producao" [selected]="ordem.status == 'producao'">Em produção</option>
+                <option value="pronto" [selected]="ordem.status == 'pronto'">Pronto para embarque</option>
+                <option value="carregado" [selected]="ordem.status == 'carregado'">Carregado</option>
+                <option value="entregue" [selected]="ordem.status == 'entregue'">Produto entregue</option>
+              </select>
+            </div>
+            <div class="group"> 
+              <label>OBSERVAÇÕES</label>
+              <textarea placeholder="Alguma observação?" formControlName="observacao" style="min-height:80px;padding-top:5px;" class="input-s1"></textarea>
+            </div>
+            <button [disabled]="!ordem_in.valid" type="submit" class="btn-s2">{{ordem_id != null ? "EDITAR" : "CRIAR"}}</button>
+            <button *ngIf="ordem_id != null" type="button" class="btn-s3" (click)="deletarOrdem()">DELETAR</button>
+            <div class="copyright">© AlphaCarbo</div>
+          </div>
+        </form>
+      </div>
+   </div>
+  </ion-content>
+</div>

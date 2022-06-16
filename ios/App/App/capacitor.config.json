@@ -1,0 +1,6 @@
+{
+	"appId": "io.alphacarbo.app",
+	"appName": "AlphaCarbo",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

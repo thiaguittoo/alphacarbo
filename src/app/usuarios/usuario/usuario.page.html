@@ -1,0 +1,32 @@
+<div class="home">
+  <div class="back_icon"  routerLink="/usuarios">
+      <img src="./../../assets/icon/arrow-left-solid.svg" width="20px">
+  </div>
+  <ion-content [fullscreen]="true">
+    
+    <div class="content">
+      <div>
+        <div class="logo">
+          <img src="./../../assets/logo.png">
+        </div>
+        
+      <form  (ngSubmit)="salvar()" [formGroup]="usuario_in" class="form_consulta">
+          <div class="componentes">
+            <div class="titulo">{{titulo}}</div>
+            <div class="group">
+              <label>E-MAIL</label>
+              <input required placeholder="E-mail" formControlName="email" value="{{usuario.email}}" type="email" class="input-s1">
+            </div>
+            <div class="group">
+              <label>SENHA</label>
+              <input required placeholder="Senha" formControlName="senha" value="{{usuario.senha}}" type="password" class="input-s1">
+            </div>
+            <button [disabled]="!usuario_in.valid" type="submit" class="btn-s2">{{usuario_id != null ? "EDITAR" : "CRIAR"}}</button>
+            <button *ngIf="usuario_id != null" type="button" class="btn-s3" (click)="deletarUsuario()">DELETAR</button>
+            <div class="copyright">© AlphaCarbo</div>
+          </div>
+        </form>
+      </div>
+   </div>
+  </ion-content>
+</div>
